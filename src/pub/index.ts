@@ -5,9 +5,10 @@ const app = express()
 
 const redis = new Redis()
 
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 app.post('/', (req, res) => {
+  console.log(`Received: ${JSON.stringify({...req.body})}`)
   redis.publish('user-data', JSON.stringify({...req.body}))
   return res.sendStatus(200)
 })

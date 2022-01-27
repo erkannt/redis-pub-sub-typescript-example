@@ -1,11 +1,17 @@
-import express from 'express'
+import Redis from 'ioredis'
 
-const app = express()
+const redis = new Redis()
 
-app.use(express.urlencoded({ extended: true }))
+const main = () => {
+  redis.subscribe('user-data', (err, count) => {
+    if (err) console.error(err.message)
+    console.log(`Subscribed to ${count} channels.`)
+  })
 
-app.get('/', (req, res) => {
-  return res.send('Sub side is runnin.')
-})
+  redis.on('message', (channel, message) => {
+    console.log(`Received message from ${channel} channel.`)
+    console.log(JSON.parse(message))
+  })
+}
 
-app.listen(8081)
+main()
