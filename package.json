@@ -1,0 +1,16 @@
+{
+  "name": "redis-pub-sub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tinyhttp/app": "^2.0.16",
+    "ioredis": "^4.28.3",
+    "milliparsec": "^2.2.0"
+  }
+}
